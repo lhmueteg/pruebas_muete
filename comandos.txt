@@ -1,0 +1,182 @@
+﻿Master local
+origin remota
+
+1. Identificación:
+
+git config --global user.name "Juan Delgado"
+git config --global user.email "<jdelgadop@taxislibres.com.co>"
+
+
+2. Crear Repositorio
+
+git init
+git clone
+
+
+3. Stagin Index (Area temporal donde se almacenan cambios que estan a punto de enviar a git con commit) 
+ 
+git add .  (Todo desde donde esta ubicado)
+git add <ruta archivo>
+git add -A
+
+
+4. Enviando cambios, confirma los cambios y los registra en el repositorio
+
+git commit 
+git commit -a -m ""
+
+
+5. Borrar archivos
+
+- usar el s.o. y borrar el archivo
+git rm archivo
+
+
+6. Mover archivos
+
+- usar el sistema operativo para mover
+- git status detecta un borrado y un nuevo archivo
+
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    paquete1/Funciones2.java
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        paquete2/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+- git add archivo movido y detecta que es el mismo borrado
+
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    paquete1/Funciones2.java -> paquete2/Funciones2.java
+
+7. Eliminar un archivo del indice y que no se vaya en el commit
+
+- se añade el archivo al indice
+
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   paquete1/Funciones3.java
+
+reset HEAD paquete1/Funciones3.java
+
+8 LOG:
+
+git log (todo)
+git log --oneline --decorate
+
+
+9. Ramas:
+
+git branch   Todas las ramas
+git branch rama1
+
+10. Cambiar Rama:
+
+git checkout rama1
+
+11. crear y cambiar rama de una vez
+
+git checkout -b rama2
+
+12. Borrar una rama:
+
+git branch -d rama1
+
+
+13. Fusionar Ramas
+
+git checkout master      Ir a la rama destino
+
+git merge <ramaOrigen> 
+
+
+14. Conflictos
+
+$ git merge rama1
+Auto-merging RepoRamas/ejbModule/paquete1/ArchivoRama2.java
+CONFLICT (content): Merge conflict in RepoRamas/ejbModule/paquete1/ArchivoRama2.java
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   ArchivoRama2.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+Corregir el conflicto y hacer commit
+
+
+15.  Inspeccionar commits
+
+ git checkout ab28782
+ 
+ 
+16. Tags o alias
+
+git tag v1.0 para el commit actual
+git tag v0.0 <serial> para un commit especifico
+git tag     lista de tags
+git checkout v0.0
+
+
+17. Push a repositirios remotos
+
+git remote add origin https://github.com/jdelgadop/RepoRamas.git   Se añade el repositorio remotos
+git push origin master  Se envia al remoto
+git push origin afc
+git push origin jcd
+
+
+18. Actualizando repositorios con el comando pull
+
+git branch --all  Todas las ramas incluidas las remotas
+
+* master
+  rama1
+  rama2
+  remotes/origin/master
+
+git pull origin master
+git pull --rebase (para no perder los cambios si hacemos pull)
+
+
+
+
+19.  Sobreescribir todos los cambios locales desde el repositorio:
+
+git config --system core.longpaths true
+
+git fetch origin
+git reset --hard origin/master
+
+
+
+20.  Para Bajar Cambios Remotos con cambios locales:
+
+1. Primero add y comitiar local
+2. Luego 
+pull origin <rama>
+
