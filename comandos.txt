@@ -180,3 +180,5 @@ git reset --hard origin/master
 2. Luego 
 pull origin <rama>
 
+
+EXCELENTE HERRAMIENTA MUY BUENA
